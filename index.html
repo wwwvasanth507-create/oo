@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ultra-fast video streaming platform with adaptive streaming and smooth playback">
+    <meta name="keywords" content="video streaming, HLS, DASH, video player, adaptive streaming">
+    <title>StreamUltra - Ultra Fast Video Streaming Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- HLS.js for adaptive streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
+                <span class="gradient-text">StreamUltra</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#player" class="nav-link">Player</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#shortcuts" class="nav-link">Shortcuts</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                <button class="upload-btn" id="uploadBtn">
+                    <span>📁</span>
+                    Upload
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content fade-in-up">
+            <h1>Experience <span class="gradient-text">Ultra-Fast</span> Video Streaming</h1>
+            <p>Adaptive streaming technology that delivers crystal-clear video quality with lightning-fast loading. Stream partial videos, enjoy smooth playback, and experience cinema-quality entertainment.</p>
+            <div class="hero-buttons">
+                <a href="#player" class="btn-primary">
+                    <span>▶️</span>
+                    Start Watching
+                </a>
+                <a href="#features" class="btn-secondary">
+                    <span>✨</span>
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Player Section -->
+    <section class="video-player-section" id="player">
+        <div class="container">
+            <div class="player-container">
+                <div class="video-wrapper" id="videoWrapper">
+                    <video class="video-player" id="videoPlayer" preload="metadata">
+                        <p>Your browser doesn't support HTML5 video.</p>
+                    </video>
+                    
+                    <!-- Custom Video Controls -->
+                    <div class="video-controls" id="videoControls">
+                        <!-- Progress Bar -->
+                        <div class="progress-container" id="progressContainer">
+                            <div class="progress-bar">
+                                <div class="progress-buffer" id="progressBuffer"></div>
+                                <div class="progress-fill" id="progressFill"></div>
+                                <div class="progress-thumb" id="progressThumb"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Controls Row -->
+                        <div class="controls-row">
+                            <div class="controls-left">
+                                <button class="control-btn" id="playPauseBtn" title="Play/Pause (Space)">
+                                    <span id="playPauseIcon">▶️</span>
+                                </button>
+                                <button class="control-btn" id="rewindBtn" title="Rewind 10s (←)">
+                                    ⏪
+                                </button>
+                                <button class="control-btn" id="forwardBtn" title="Forward 10s (→)">
+                                    ⏩
+                                </button>
+                                <div class="volume-container">
+                                    <button class="control-btn" id="muteBtn" title="Mute (M)">
+                                        <span id="volumeIcon">🔊</span>
+                                    </button>
+                                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                                </div>
+                                <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+                            </div>
+                            
+                            <div class="controls-right">
+                                <select class="speed-selector" id="speedSelector" title="Playback Speed">
+                                    <option value="0.25">0.25x</option>
+                                    <option value="0.5">0.5x</option>
+                                    <option value="0.75">0.75x</option>
+                                    <option value="1" selected>1x</option>
+                                    <option value="1.25">1.25x</option>
+                                    <option value="1.5">1.5x</option>
+                                    <option value="2">2x</option>
+                                </select>
+                                <button class="control-btn" id="pipBtn" title="Picture-in-Picture">
+                                    📺
+                                </button>
+                                <button class="control-btn" id="fullscreenBtn" title="Fullscreen (F)">
+                                    ⛶
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Input Section -->
+    <section class="video-input-section">
+        <div class="container input-container">
+            <h2>🎬 Load Your Video</h2>
+            <p>Enter a video URL or upload a file to start streaming</p>
+            
+            <form class="url-input-form" id="urlForm">
+                <input type="url" class="url-input" id="urlInput" placeholder="Enter video URL (MP4, HLS, etc.)" required>
+                <button type="submit" class="btn-primary">Load Video</button>
+            </form>
+            
+            <div class="file-drop-zone" id="dropZone">
+                <div class="file-drop-zone-icon">📤</div>
+                <h3>Drag & Drop Video File</h3>
+                <p class="file-drop-zone-text">or click to browse (MP4, WebM, HLS)</p>
+                <input type="file" class="file-input" id="fileInput" accept="video/*,.m3u8">
+                <button class="btn-secondary">Choose File</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="input-container">
+                <h2>✨ Powerful Features</h2>
+                <p>Everything you need for the ultimate streaming experience</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Ultra-Fast Loading</h3>
+                    <p>Load partial video segments on demand for instant playback start. No more waiting for entire videos to buffer.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📡</div>
+                    <h3>Adaptive Streaming</h3>
+                    <p>Automatically adjusts video quality based on your internet speed for smooth, uninterrupted playback experience.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Precise Seeking</h3>
+                    <p>Jump to any part of the video instantly with smart buffering that loads only what you need.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Fully Responsive</h3>
+                    <p>Perfect viewing experience on any device - desktop, tablet, or mobile. Controls adapt automatically.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Dark/Light Mode</h3>
+                    <p>Switch between themes for comfortable viewing in any lighting condition. Your preference is saved.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>Keyboard Controls</h3>
+                    <p>Full keyboard support for power users. Space, arrows, M, F, and more for quick control.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Playback Speed</h3>
+                    <p>Watch at your own pace with speed options from 0.25x to 2x. Great for tutorials or slow motion.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📺</div>
+                    <h3>Picture-in-Picture</h3>
+                    <p>Keep watching while multitasking. Pop the video out into a floating window that stays on top.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern UI</h3>
+                    <p>Clean, intuitive interface with smooth animations and gradient accents for a premium feel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keyboard Shortcuts Section -->
+    <section class="shortcuts-section" id="shortcuts">
+        <div class="container shortcuts-container">
+            <div class="input-container">
+                <h2>⌨️ Keyboard Shortcuts</h2>
+                <p>Master these shortcuts for lightning-fast control</p>
+            </div>
+            
+            <div class="shortcuts-grid">
+                <div class="shortcut-item">
+                    <div><span class="key">Space</span></div>
+                    <div>Play/Pause</div>
+                </div>
+                <div class="shortcut-item">
+                    <div><span class="key">←</span></div>
+                    <div>Rewind 10s</div>
+                </div>
+                <div class="shortcut-item">
+                    <div><span class="key">→</span></div>
+                    <div>Forward 10s</div>
+                </div>
+                <div class="shortcut-item">
+                    <div><span class="key">↑</span></div>
+                    <div>Volume Up</div>
+                </div>
+                <div class="shortcut-item">
+                    <div><span class="key">↓</span></div>
+                    <div>Volume Down</div>
+                </div>
+                <div class="shortcut-item">
+                    <div><span class="key">M</span></div>
+                    <div>Mute/Unmute</div>
+                </div>
+                <div class="shortcut-item">
+                    <div><span class="key">F</span></div>
+                    <div>Fullscreen</div>
+                </div>
+                <div class="shortcut-item">
+                    <div><span class="key">0-9</span></div>
+                    <div>Jump to %</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            <p>&copy; 2024 StreamUltra. Built with ❤️ for the best streaming experience.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
